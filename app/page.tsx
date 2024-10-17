@@ -1,101 +1,161 @@
+"use client";
+
+import { useState, useEffect } from "react";
+import axios from "axios";
+import { useTheme } from "next-themes";
+import { Search, Moon, Sun, ChevronLeft, ChevronRight } from "lucide-react";
 import Image from "next/image";
+import RepositoryList from "./_components/RepositoryList";
 
-export default function Home() {
+const Home = () => {
+  const [username, setUsername] = useState("");
+  const [userData, setUserData] = useState<any>(null);
+  const [repositories, setRepositories] = useState<any[]>([]);
+  const [error, setError] = useState("");
+  const [page, setPage] = useState(1);
+  const [loading, setLoading] = useState(false);
+  const { theme, setTheme } = useTheme();
+
+  // Fetch GitHub user data and repositories
+  const fetchUserData = async (user: string) => {
+    setLoading(true);
+    setError("");
+    try {
+      const response = await axios.get(`https://api.github.com/users/${user}`);
+      setUserData(response.data);
+      fetchRepositories(user, 1); // Reset to page 1 when fetching a new user
+    } catch (err) {
+      setError("User not found or API request failed.");
+      setUserData(null);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // Fetch repositories with pagination
+  const fetchRepositories = async (user: string, page: number) => {
+    try {
+      const response = await axios.get(
+        `https://api.github.com/users/${user}/repos?per_page=30&page=${page}`
+      );
+      setRepositories(response.data);
+    } catch (err) {
+      setError("Failed to load repositories.");
+    }
+  };
+
+  // Handle search form submission
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (username) fetchUserData(username);
+  };
+
+  // Re-fetch repositories when the page changes
+  useEffect(() => {
+    if (userData) fetchRepositories(username, page);
+  }, [page]);
+
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="https://nextjs.org/icons/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+    <div className="container mx-auto p-4">
+      {/* Theme Toggle */}
+      <button
+        onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+        className="p-2 rounded-full bg-gray-200 dark:bg-gray-700"
+      >
+        {theme === "dark" ? (
+          <Sun className="w-5 h-5" />
+        ) : (
+          <Moon className="w-5 h-5" />
+        )}
+      </button>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+      <h1 className="text-3xl font-bold mb-4">GitHub User Profile Search</h1>
+
+      {/* Search Form */}
+      <form onSubmit={handleSearch} className="mb-8">
+        <div className="flex items-center max-w-md mx-auto">
+          <input
+            type="text"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            placeholder="Enter GitHub username"
+            className="flex-grow px-4 py-2 rounded-l-md border-2 border-r-0 border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+          <button
+            type="submit"
+            className="px-4 py-2 bg-neutral-500 text-white rounded-r-md hover:bg-neutral-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
           >
-            <Image
-              className="dark:invert"
-              src="https://nextjs.org/icons/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+            <Search className="w-5 h-5" />
+          </button>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
+      </form>
+
+      {/* Loading Spinner */}
+      {loading && (
+        <div
+          className="inline-block size-4 animate-spin rounded-full border-2 border-current border-t-transparent text-black"
+          role="status"
+          aria-label="Loading"
         >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+          <span className="sr-only">Loading...</span>
+        </div>
+      )}
+
+      {/* Error Message */}
+      {error && <p className="text-red-500">{error}</p>}
+
+      {/* User Data Display */}
+      {userData && (
+        <div className="mb-8 bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
+          <div className="flex flex-col md:flex-row items-center">
+            <Image
+              src={userData.avatar_url}
+              alt={userData.login}
+              width={128}
+              height={128}
+              className="w-32 h-32 rounded-full mb-4 md:mb-0 md:mr-6"
+            />
+            <div>
+              <h2 className="text-2xl font-bold">{userData.login}</h2>
+              <p className="text-gray-600 dark:text-gray-400">
+                @{userData.login}
+              </p>
+              <p className="mt-2">{userData.bio}</p>
+              <p className="mt-1 text-sm text-gray-600 dark:text-gray-400">
+                {userData.location}
+              </p>
+              <p className="mt-1 text-sm text-gray-600 dark:text-gray-400">
+                {userData.public_repos} public repositories
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Repository List */}
+      <RepositoryList repositories={repositories} />
+
+      {/* Pagination Controls */}
+      {repositories.length > 0 && (
+        <div className="flex justify-center mt-8">
+          <button
+            onClick={() => setPage(page - 1)}
+            disabled={page === 1}
+            className="mr-2 px-4 py-2 bg-gray-200 dark:bg-gray-700 rounded-md disabled:opacity-50"
+          >
+            <ChevronLeft className="w-5 h-5" />
+          </button>
+          <button
+            onClick={() => setPage(page + 1)}
+            disabled={repositories.length < 30}
+            className="px-4 py-2 bg-gray-200 dark:bg-gray-700 rounded-md"
+          >
+            <ChevronRight className="w-5 h-5" />
+          </button>
+        </div>
+      )}
     </div>
   );
-}
+};
+
+export default Home;

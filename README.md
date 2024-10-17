@@ -1,36 +1,46 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-## Getting Started
+# GitHub User Profile Search
 
-First, run the development server:
+## Instructions
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+1. Install dependencies:
+   ```bash
+   npm install
+   ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Run the application:
+   ```bash
+   npm run dev
+   ```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+3. Open in your browser: [http://localhost:3000](http://localhost:3000)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Features
+- Search for GitHub profiles by username.
+- Display user information (avatar, bio, location, public repositories).
+- Display list of public repositories with repo names, descriptions, stars, and forks.
+- Pagination for repositories (GitHub API limits results to 30 per page).
+- Responsive design using Tailwind CSS.
 
-## Learn More
+## Bonus Features
+- Loading indicator while fetching data.
+- Next.js dynamic routes for sharing profile URLs (e.g., /user/octocat).
+- Dark mode toggle with Tailwind CSS.
 
-To learn more about Next.js, take a look at the following resources:
+## Technologies Used
+- **Next.js**: React framework for server-side rendering and static site generation.
+- **TypeScript**: Strongly typed programming language for enhanced developer experience.
+- **Tailwind CSS**: Utility-first CSS framework for rapid UI development.
+- **Axios**: HTTP client for making API requests.
+- **GitHub API**: To fetch GitHub user profile data and repositories.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Additional Instructions
+- Handle API rate limits and display appropriate error messages if the limit is exceeded.
+- Gracefully handle invalid usernames and API request failures with user-friendly error messages.
+- Ensure mobile responsiveness and intuitive UI.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## How to Contribute
+If you would like to contribute to this project, feel free to fork the repository and submit a pull request.
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## License
+This project is licensed under the MIT License.
