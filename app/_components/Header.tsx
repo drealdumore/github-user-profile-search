@@ -1,7 +1,6 @@
 import React from "react";
-import Github from "./github";
-import ThemeSwitch from "./themeSwitch";
-
+import Github from "./Github";
+import ThemeSwitch from "./ThemeSwitch";
 
 const Header = () => {
   return (
