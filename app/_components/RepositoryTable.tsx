@@ -13,18 +13,16 @@ interface Repository {
   };
 }
 
-interface RepositoryListProps {
+interface RepositoryTableProps {
   repositories: Repository[];
 }
 
-const RepositoryList: React.FC<RepositoryListProps> = ({ repositories }) => {
+const RepositoryTable: React.FC<RepositoryTableProps> = ({ repositories }) => {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+    <>
+      {/* <div className="grid max-w-6xl grid-cols-1 overflow-hidden sm:grid-cols-2 lg:grid-cols-3 [&>*]:relative [&>*]:px-1 [&>*]:py-4 [&>*]:before:absolute [&>*]:before:bg-[#e5e7eb]/70 [&>*]:before:[block-size:100vh] [&>*]:before:[inline-size:1px] [&>*]:before:[inset-block-start:0] [&>*]:before:[inset-inline-start:-1px] [&>*]:after:absolute [&>*]:after:bg-[#e5e7eb]/70 [&>*]:after:[block-size:1px] [&>*]:after:[inline-size:100vw] [&>*]:after:[inset-block-start:-1px] [&>*]:after:[inset-inline-start:0] sm:[&>*]:px-8 xl:[&>*]:px-12"> */}
       {repositories.map((repo) => (
-        <div
-          key={repo.id}
-          className="bg-white dark:bg-[#1a1a1a] rounded-lg border border-gray-200 dark:border-gray-700 shadow-lg p-6 hover:shadow-xl transition-shadow"
-        >
+        <div key={repo.id}>
           <h3 className="text-lg font-semibold mb-2">
             <a
               href={repo.html_url}
@@ -75,8 +73,8 @@ const RepositoryList: React.FC<RepositoryListProps> = ({ repositories }) => {
           </div>
         </div>
       ))}
-    </div>
+    </>
   );
 };
 
-export default RepositoryList;
+export default RepositoryTable;
