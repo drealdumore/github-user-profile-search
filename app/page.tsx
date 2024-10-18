@@ -7,9 +7,9 @@ import { Search, ChevronLeft, ChevronRight } from "lucide-react";
 
 import RepositoryList from "./_components/RepositoryList";
 import RepositoryTable from "./_components/RepositoryTable";
-import Loader from "./_components/loader";
-import ErrorMessage from "./_components/error";
-import Header from "./_components/header";
+import Header from "./_components/Header";
+import Loader from "./_components/Loader";
+import ErrorMessage from "./_components/Error";
 
 const ITEMS_PER_PAGE = 30;
 

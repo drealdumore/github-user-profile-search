@@ -1,6 +1,7 @@
 export const sharedMetadata = {
   title: "GitHub User Profile Search",
-  description: "Explore GitHub repositories and view details like stars and forks.",
+  description:
+    "Explore GitHub repositories and view details like stars and forks.",
   url:
     process.env.NODE_ENV === "development"
       ? "http://localhost:3000"
