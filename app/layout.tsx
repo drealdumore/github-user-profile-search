@@ -3,7 +3,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import { ThemeProvider } from "next-themes";
 import Footer from "./_components/Footer";
-import { sharedMetadata, SOCIALS } from "./utils/metadata";
+import { sharedMetadata, SOCIALS } from "../utils/metadata";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -26,22 +26,12 @@ export default function RootLayout({
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} antialiased`}
     >
-      {/* <body>
-        <ThemeProvider>{children}</ThemeProvider>
-        <Footer />
-      </body> */}
-
       <body className="flex flex-col min-h-screen">
         {" "}
-        {/* Make the body a flex container */}
         <ThemeProvider>
-          <main className="flex-grow">
-            {" "}
-            {/* Allow main to grow and take available space */}
-            {children}
-          </main>
+          <main className="flex-grow"> {children}</main>
         </ThemeProvider>
-        <Footer /> {/* Footer will now stay at the bottom */}
+        <Footer />
       </body>
     </html>
   );

@@ -5,7 +5,7 @@ export const sharedMetadata = {
   url:
     process.env.NODE_ENV === "development"
       ? "http://localhost:3000"
-      : "https://minimal-list.vercel.app",
+      : "https://github-users-search.vercel.app",
   ogImage: {
     width: 1200,
     height: 630,
