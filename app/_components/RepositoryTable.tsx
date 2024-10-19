@@ -17,7 +17,7 @@ const RepositoryTable: React.FC<RepositoryTableProps> = ({ repositories }) => {
               href={repo.html_url}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-text hover:text-[#333333] dark:text-text dark:hover:text-foreground transition-colors"
+              className="text-text hover:text-[#333333] hover:underline dark:text-text dark:hover:text-foreground transition-colors"
             >
               {repo.name}
             </a>
