@@ -29,9 +29,13 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} flex flex-col min-h-screen antialiased`}
       >
-        {" "}
-        <ThemeProvider attribute="class">
-          <main> {children}</main>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          {children}
         </ThemeProvider>
         <Footer />
       </body>
@@ -44,35 +48,47 @@ export const metadata: Metadata = {
   robots: {
     index: true,
     follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-    },
+    googleBot: { index: true, follow: true },
   },
   title: {
     default: sharedMetadata.title,
-    template: `%s — ${sharedMetadata.title}`,
+    template: `%s | ${sharedMetadata.title}`,
   },
   description: sharedMetadata.description,
-  keywords: ["Minimalist", "todo app", "todo", "drealdumore"],
+  keywords: [
+    "GitHub user search",
+    "GitHub profiles",
+    "Developer tools",
+    "Open source search",
+    "GitHub repos",
+    "Next.js GitHub search",
+  ],
   openGraph: {
     title: {
       default: sharedMetadata.title,
-      template: `%s — ${sharedMetadata.title}`,
+      template: `%s | ${sharedMetadata.title}`,
     },
     description: sharedMetadata.description,
     type: "website",
     url: sharedMetadata.url,
     siteName: sharedMetadata.title,
     locale: "en_IE",
-    images: sharedMetadata.image,
+    images: [
+      {
+        url: sharedMetadata.image,
+        width: 1200,
+        height: 630,
+        alt: "GitHub User Search App Preview",
+      },
+    ],
   },
-  alternates: {
-    canonical: "/",
-  },
+  alternates: { canonical: sharedMetadata.url },
   twitter: {
     card: "summary_large_image",
     site: `@${SOCIALS.twitter.username}`,
     creator: `@${SOCIALS.twitter.username}`,
+    title: sharedMetadata.title,
+    description: sharedMetadata.description,
+    images: [sharedMetadata.image],
   },
 };

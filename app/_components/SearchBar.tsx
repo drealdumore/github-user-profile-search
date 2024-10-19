@@ -19,7 +19,7 @@ const SearchBar = ({ username, setUsername, handleSearch }: SearchBarProps) => {
           <button
             disabled={!username}
             type="submit"
-            className="inline-flex items-center rounded-lg border disabled:bg-background dark:border-[#333333] dark:text-[#eaeaea] px-3 text-sm font-medium transition hover:bg-[#d4d4d8]/2 hover:text-foreground dark:hover:bg-[#111111]/50 text-[#333333] bg-[#eaeaea] dark:bg-[#333333]"
+            className="inline-flex items-center rounded-lg border disabled:bg-background dark:border-[#333333] dark:text-[#eaeaea] px-3 text-sm font-medium transition hover:bg-[#d4d4d8]/2 hover:text-foreground dark:hover:bg-[#111111]/50 text-[#333333] dark:disabled:text-[#333333] bg-[#eaeaea] dark:bg-[#333333] dark:disabled:bg-background"
           >
             <Search className="w-5 h-5" />
           </button>

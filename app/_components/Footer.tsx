@@ -5,7 +5,8 @@ import { SOCIALS } from "../../utils/metadata";
 
 export default function Footer() {
   return (
-    <footer className="w-full font-mono text-center py-4 border-t mt-auto">
+    <footer className="w-full font-mono text-center py-4 border-t mt-auto dark:border-[#333333]">
+
       <div className="flex justify-center space-x-4 mb-2">
         <Link href={SOCIALS.twitter.url} passHref>
           <p className="hover:text-neutral-500 hover:underline cursor-pointer text-xs">
