@@ -19,6 +19,10 @@
     --text: #d1d5db;
     --muted-foreground: #a1a1a1;
   }
+
+  ::selection {
+    @apply bg-[#333333] text-[#eaeaea];
+  }
 }
 
 body {
