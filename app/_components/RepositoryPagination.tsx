@@ -2,13 +2,7 @@
 
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useEffect } from "react";
-
-interface RepositoryPaginationProps {
-  page: number;
-  setPage: (page: number | any) => void;
-  repositoriesCount: number;
-  itemsPerPage: number;
-}
+import { RepositoryPaginationProps } from "../_types/types";
 
 const RepositoryPagination = ({
   page,
@@ -52,7 +46,7 @@ const RepositoryPagination = ({
             : "bg-gray-200 dark:bg-[#111111] dark:hover:bg-[#111111]/50"
         }`}
       >
-        <ChevronRight className="w-5 h-5"  />
+        <ChevronRight className="w-5 h-5" />
       </button>
     </div>
   );

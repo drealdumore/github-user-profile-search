@@ -1,8 +1,7 @@
-import React from "react";
+"use client";
 
-interface ErrorMessageProps {
-  message: string;
-}
+import React from "react";
+import { ErrorMessageProps } from "../_types/types";
 
 const ErrorMessage: React.FC<ErrorMessageProps> = ({ message }) => {
   return (

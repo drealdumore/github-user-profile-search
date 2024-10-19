@@ -1,10 +1,7 @@
-import { Search } from "lucide-react";
+"use client";
 
-interface SearchBarProps {
-  username: string;
-  setUsername: (username: string) => void;
-  handleSearch: (e: React.FormEvent) => void;
-}
+import { Search } from "lucide-react";
+import { SearchBarProps } from "../_types/types";
 
 const SearchBar = ({ username, setUsername, handleSearch }: SearchBarProps) => {
   return (

@@ -6,12 +6,12 @@ import Footer from "./_components/Footer";
 import { sharedMetadata, SOCIALS } from "../utils/metadata";
 
 const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
+  src: "./_fonts/GeistVF.woff",
   variable: "--font-geist-sans",
   weight: "100 900",
 });
 const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
+  src: "./_fonts/GeistMonoVF.woff",
   variable: "--font-geist-mono",
   weight: "100 900",
 });

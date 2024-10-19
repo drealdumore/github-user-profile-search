@@ -1,19 +1,12 @@
+"use client";
+
 import RepositoryTable from "./RepositoryTable";
 
 import UserProfile from "./UserProfile";
 import RepositoryPagination from "./RepositoryPagination";
 import Loader from "./Loader";
 import ErrorMessage from "./Error";
-
-interface MainContentProps {
-  userData: any;
-  loading: boolean;
-  error: string;
-  repositories: any[];
-  page: number;
-  setPage: (page: number) => void;
-  itemsPerPage: number;
-}
+import { MainContentProps, Repository } from "../_types/types";
 
 const MainContent = ({
   userData,

@@ -1,22 +1,11 @@
+"use client";
+
 import React from "react";
 import { GitFork, Star } from "lucide-react";
 import Github from "./Github";
+import { RepositoryTableProps } from "../_types/types";
 
-interface Repository {
-  id: number;
-  name: string;
-  html_url: string;
-  description?: string;
-  stargazers_count: number;
-  forks_count: number;
-  owner: {
-    login: string;
-  };
-}
 
-interface RepositoryTableProps {
-  repositories: Repository[];
-}
 
 const RepositoryTable: React.FC<RepositoryTableProps> = ({ repositories }) => {
   return (

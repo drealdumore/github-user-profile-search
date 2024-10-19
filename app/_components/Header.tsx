@@ -1,6 +1,8 @@
+"use client";
+
 import React from "react";
 import Github from "./Github";
-// import ThemeSwitch from "./ThemeSwitch";
+import ThemeSwitch from "./ThemeSwitch";
 
 const Header = () => {
   return (
@@ -15,7 +17,7 @@ const Header = () => {
           <nav>
             <ul className="flex items-center gap-4">
               <li>
-                {/* <ThemeSwitch /> */}
+                <ThemeSwitch />
               </li>
             </ul>
           </nav>
