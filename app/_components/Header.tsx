@@ -12,7 +12,7 @@ const Header = () => {
           <a aria-label="Home" href="/">
             <span className="sr-only">GitHub User Profile Search</span>
 
-            <Github aria-hidden="true" />
+            <Github aria-hidden="true" className="size-4 md:size-8"/>
           </a>
           <nav>
             <ul className="flex items-center gap-4">
