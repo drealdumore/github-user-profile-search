@@ -26,10 +26,12 @@ export default function RootLayout({
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} antialiased`}
     >
-      <body className="flex flex-col min-h-screen">
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} flex flex-col min-h-screen antialiased`}
+      >
         {" "}
         <ThemeProvider attribute="class">
-          <main className="flex-grow"> {children}</main>
+          <main> {children}</main>
         </ThemeProvider>
         <Footer />
       </body>

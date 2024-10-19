@@ -32,8 +32,7 @@ export interface MainContentProps {
   error: string;
   repositories: Repository[];
   page: number;
-  setPage: React.Dispatch<React.SetStateAction<number>>;
-
+  setPage: (setPage: number) => void;
   itemsPerPage: number;
 }
 
@@ -43,7 +42,7 @@ export interface RepositoryListProps {
 
 export interface RepositoryPaginationProps {
   page: number;
-  setPage: React.Dispatch<React.SetStateAction<number>>;
+  setPage: (setPage: number) => void;
   repositoriesCount: number;
   itemsPerPage: number;
 }
@@ -56,4 +55,14 @@ export interface SearchBarProps {
   username: string;
   setUsername: (username: string) => void;
   handleSearch: (e: React.FormEvent) => void;
+}
+
+export interface CustomError {
+  response?: {
+    status: number;
+    data: {
+      message: string;
+    };
+  };
+  message: string;
 }

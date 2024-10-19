@@ -4,6 +4,7 @@ import { Search } from "lucide-react";
 import { SearchBarProps } from "../_types/types";
 
 const SearchBar = ({ username, setUsername, handleSearch }: SearchBarProps) => {
+  console.log(username);
   return (
     <form onSubmit={handleSearch} className="mb-8">
       <div className="flex items-center max-w-md mx-auto">

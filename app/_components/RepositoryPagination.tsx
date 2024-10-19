@@ -10,23 +10,8 @@ const RepositoryPagination = ({
   repositoriesCount,
   itemsPerPage,
 }: RepositoryPaginationProps) => {
-  // const handlePageChange = (direction: "prev" | "next") => {
-  //   if (direction === "next") {
-  //     setPage((prev: number) => prev + 1);
-  //   } else {
-  //     setPage((prev: number) => Math.max(prev - 1, 1));
-  //   }
-
-  //   window.scrollTo({ top: 0, behavior: "smooth" });
-  // };
-
-  const handlePageChange = (direction: "prev" | "next") => {
-    if (direction === "next") {
-      setPage(page + 1);
-    } else {
-      setPage(Math.max(page - 1, 1));
-    }
-
+  const handlePageChange = (newPage: number) => {
+    setPage(newPage);
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
@@ -34,30 +19,34 @@ const RepositoryPagination = ({
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, [page]);
 
+  const isPrevDisabled = page === 1;
+  const isNextDisabled = repositoriesCount < itemsPerPage;
+
+  const buttonStyle =
+    "mr-2 px-4 py-2 rounded-md bg-gray-200 dark:bg-[#111111] dark:hover:bg-[#111111]/50 disabled:pointer-events-none disabled:cursor-not-allowed";
+
   return (
     <div className="flex justify-center mt-8">
-      <button
-        onClick={() => handlePageChange("prev")}
-        disabled={page === 1}
-        className={`mr-2 px-4 py-2 rounded-md disabled:pointer-events-none disabled:cursor-not-allowed ${
-          page === 1
-            ? "bg-gray-200 dark:bg-[#111111] dark:hover:bg-[#111111]/50 disabled:opacity-50"
-            : "bg-gray-200 dark:bg-[#111111] dark:hover:bg-[#111111]/50"
-        }`}
-      >
-        <ChevronLeft className="w-5 h-5" />
-      </button>
-      <button
-        onClick={() => handlePageChange("next")}
-        disabled={repositoriesCount < itemsPerPage}
-        className={`px-4 py-2 rounded-md disabled:pointer-events-none disabled:cursor-not-allowed ${
-          repositoriesCount < itemsPerPage
-            ? "bg-gray-200 dark:bg-[#111111] dark:hover:bg-[#111111]/50 disabled:opacity-50"
-            : "bg-gray-200 dark:bg-[#111111] dark:hover:bg-[#111111]/50"
-        }`}
-      >
-        <ChevronRight className="w-5 h-5" />
-      </button>
+      {!isPrevDisabled && (
+        <button
+          onClick={() => handlePageChange(page - 1)}
+          disabled={isPrevDisabled}
+          className={`${buttonStyle} ${isPrevDisabled ? "opacity-50" : ""}`}
+          aria-label="Previous page"
+        >
+          <ChevronLeft className="w-5 h-5" />
+        </button>
+      )}
+      {!isNextDisabled && (
+        <button
+          onClick={() => handlePageChange(page + 1)}
+          disabled={isNextDisabled}
+          className={`${buttonStyle} ${isNextDisabled ? "opacity-50" : ""}`}
+          aria-label="Next page"
+        >
+          <ChevronRight className="w-5 h-5" />
+        </button>
+      )}
     </div>
   );
 };

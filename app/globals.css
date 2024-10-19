@@ -64,7 +64,7 @@ h3 {
     color: var(--link-text);
   }
 
-  main {
+  .main {
     @apply container mx-auto p-4;
   }
 }
