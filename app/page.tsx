@@ -20,7 +20,6 @@ const Home = () => {
   const [loading, setLoading] = useState<boolean>(false);
 
   const fetchRepositories = useCallback(async (user: string, page: number) => {
-    console.log("Fetching repositories for", user, "on page", page);
     try {
       const { data } = await axios.get<Repository[]>(
         `https://api.github.com/users/${user}/repos?per_page=${ITEMS_PER_PAGE}&page=${page}`,
