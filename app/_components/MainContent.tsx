@@ -2,8 +2,8 @@ import RepositoryTable from "./RepositoryTable";
 
 import UserProfile from "./UserProfile";
 import RepositoryPagination from "./RepositoryPagination";
-import Loader from "./loader";
-import ErrorMessage from "./error";
+import Loader from "./Loader";
+import ErrorMessage from "./Error";
 
 interface MainContentProps {
   userData: any;

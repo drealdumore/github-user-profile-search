@@ -28,7 +28,7 @@ export default function RootLayout({
     >
       <body className="flex flex-col min-h-screen">
         {" "}
-        <ThemeProvider>
+        <ThemeProvider attribute="class">
           <main className="flex-grow"> {children}</main>
         </ThemeProvider>
         <Footer />
@@ -36,6 +36,7 @@ export default function RootLayout({
     </html>
   );
 }
+
 export const metadata: Metadata = {
   metadataBase: new URL(sharedMetadata.url),
   robots: {

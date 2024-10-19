@@ -10,10 +10,7 @@ const Header = () => {
           <a aria-label="Home" href="/">
             <span className="sr-only">GitHub User Profile Search</span>
 
-            <Github
-              className="stroke-zinc-800 size-5 dark:stroke-gray-100"
-              aria-hidden="true"
-            />
+            <Github aria-hidden="true" />
           </a>
           <nav>
             <ul className="flex items-center gap-4">

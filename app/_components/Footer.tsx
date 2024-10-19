@@ -21,7 +21,7 @@ export default function Footer() {
           </p>
         </Link>
       </div>
-      <p className="text-sm text-neutral-600">
+      <p className="text-xs hover:text-neutral-500">
         © {new Date().getFullYear()} GitHub User Profile Search.
       </p>
     </footer>

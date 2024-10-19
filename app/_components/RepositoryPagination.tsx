@@ -37,8 +37,8 @@ const RepositoryPagination = ({
         disabled={page === 1}
         className={`mr-2 px-4 py-2 rounded-md disabled:pointer-events-none disabled:cursor-not-allowed ${
           page === 1
-            ? "bg-gray-200 dark:bg-gray-700 disabled:opacity-50"
-            : "bg-gray-200 dark:bg-gray-700"
+            ? "bg-gray-200 dark:bg-[#111111] dark:hover:bg-[#111111]/50 disabled:opacity-50"
+            : "bg-gray-200 dark:bg-[#111111] dark:hover:bg-[#111111]/50"
         }`}
       >
         <ChevronLeft className="w-5 h-5" />
@@ -48,11 +48,11 @@ const RepositoryPagination = ({
         disabled={repositoriesCount < itemsPerPage}
         className={`px-4 py-2 rounded-md disabled:pointer-events-none disabled:cursor-not-allowed ${
           repositoriesCount < itemsPerPage
-            ? "bg-gray-200 dark:bg-gray-700 disabled:opacity-50"
-            : "bg-gray-200 dark:bg-gray-700"
+            ? "bg-gray-200 dark:bg-[#111111] dark:hover:bg-[#111111]/50 disabled:opacity-50"
+            : "bg-gray-200 dark:bg-[#111111] dark:hover:bg-[#111111]/50"
         }`}
       >
-        <ChevronRight className="w-5 h-5" />
+        <ChevronRight className="w-5 h-5"  />
       </button>
     </div>
   );
