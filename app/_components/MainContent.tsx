@@ -6,7 +6,7 @@ import UserProfile from "./UserProfile";
 import RepositoryPagination from "./RepositoryPagination";
 import Loader from "./Loader";
 import ErrorMessage from "./Error";
-import { MainContentProps, Repository } from "../_types/types";
+import { MainContentProps } from "../_types/types";
 
 const MainContent = ({
   userData,

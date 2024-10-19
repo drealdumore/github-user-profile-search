@@ -10,11 +10,21 @@ const RepositoryPagination = ({
   repositoriesCount,
   itemsPerPage,
 }: RepositoryPaginationProps) => {
+  // const handlePageChange = (direction: "prev" | "next") => {
+  //   if (direction === "next") {
+  //     setPage((prev: number) => prev + 1);
+  //   } else {
+  //     setPage((prev: number) => Math.max(prev - 1, 1));
+  //   }
+
+  //   window.scrollTo({ top: 0, behavior: "smooth" });
+  // };
+
   const handlePageChange = (direction: "prev" | "next") => {
     if (direction === "next") {
-      setPage((prev: number) => prev + 1);
+      setPage(page + 1);
     } else {
-      setPage((prev: number) => Math.max(prev - 1, 1));
+      setPage(Math.max(page - 1, 1));
     }
 
     window.scrollTo({ top: 0, behavior: "smooth" });

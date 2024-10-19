@@ -5,36 +5,21 @@ import axios from "axios";
 import SearchBar from "./_components/SearchBar";
 import MainContent from "./_components/MainContent";
 import Header from "./_components/Header";
-import { Repository } from "./_types/types";
+import { Repository, UserProfile } from "./_types/types";
 
 const ITEMS_PER_PAGE = 30;
 
 const Home = () => {
   const [username, setUsername] = useState("");
-  const [userData, setUserData] = useState<string | any>(null);
+  const [userData, setUserData] = useState<UserProfile | null>(null); 
   const [repositories, setRepositories] = useState<Repository[]>([]);
   const [error, setError] = useState("");
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
 
-  const fetchUserData = useCallback(async (user: string) => {
-    setLoading(true);
-    setError("");
-    try {
-      const { data } = await axios.get(`https://api.github.com/users/${user}`);
-      setUserData(data);
-      await fetchRepositories(user, 1);
-    } catch {
-      setError("User not found or API request failed.");
-      setUserData(null);
-    } finally {
-      setLoading(false);
-    }
-  }, []);
-
   const fetchRepositories = useCallback(async (user: string, page: number) => {
     try {
-      const { data } = await axios.get(
+      const { data } = await axios.get<Repository[]>(
         `https://api.github.com/users/${user}/repos?per_page=${ITEMS_PER_PAGE}&page=${page}`
       );
       setRepositories(data);
@@ -42,6 +27,26 @@ const Home = () => {
       setError("Failed to load repositories.");
     }
   }, []);
+
+  const fetchUserData = useCallback(
+    async (user: string) => {
+      setLoading(true);
+      setError("");
+      try {
+        const { data } = await axios.get<UserProfile>(
+          `https://api.github.com/users/${user}`
+        );
+        setUserData(data);
+        await fetchRepositories(user, 1);
+      } catch {
+        setError("User not found or API request failed.");
+        setUserData(null); 
+      } finally {
+        setLoading(false);
+      }
+    },
+    [fetchRepositories]
+  );
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();

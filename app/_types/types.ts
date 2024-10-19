@@ -11,7 +11,15 @@ export interface Repository {
 }
 
 export interface UserProfileProps {
-  userData: string | any | undefined;
+  userData: UserProfile;
+}
+
+export interface UserProfile {
+  public_repos: string;
+  location: string;
+  login: string;
+  avatar_url: string;
+  bio: string;
 }
 
 export interface ErrorMessageProps {
@@ -19,12 +27,13 @@ export interface ErrorMessageProps {
 }
 
 export interface MainContentProps {
-  userData: string | any | undefined;
+  userData: UserProfile | null;
   loading: boolean;
   error: string;
   repositories: Repository[];
   page: number;
-  setPage: (page: number) => void;
+  setPage: React.Dispatch<React.SetStateAction<number>>;
+
   itemsPerPage: number;
 }
 
@@ -34,7 +43,7 @@ export interface RepositoryListProps {
 
 export interface RepositoryPaginationProps {
   page: number;
-  setPage: (page: number | any) => void;
+  setPage: React.Dispatch<React.SetStateAction<number>>;
   repositoriesCount: number;
   itemsPerPage: number;
 }
