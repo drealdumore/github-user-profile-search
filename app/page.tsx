@@ -32,7 +32,7 @@ const Home = () => {
       setRepositories(data);
     } catch (err: unknown) {
       if (axios.isAxiosError(err)) {
-        const errorResponse = err.response?.data as { message: string }; // Assert the response data structure
+        const errorResponse = err.response?.data as { message: string };
         if (errorResponse.message.includes(RATE_LIMIT_ERROR_MESSAGE)) {
           setError(
             "You've hit the API rate limit. Please wait a moment and try again soon."
@@ -60,6 +60,7 @@ const Home = () => {
             },
           }
         );
+        console.log(data);
         setUserData(data);
         await fetchRepositories(user, 1);
         setPage(1);

@@ -20,6 +20,10 @@ export interface UserProfile {
   login: string;
   avatar_url: string;
   bio: string;
+  company?: string;
+  following?: string;
+  followers?: string;
+  html_url?: string;
 }
 
 export interface ErrorMessageProps {
