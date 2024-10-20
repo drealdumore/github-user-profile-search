@@ -107,16 +107,23 @@ const Home = () => {
   return (
     <div className="main">
       <Header />
-      <div className="flex items-center justify-center flex-col">
-        <h1 className="text-2xl font-semibold mb-3 text-black dark:text-white md:text-4xl text-center">
-          GitHub User Profile Search
-        </h1>
 
-        <SearchBar
-          username={username}
-          setUsername={setUsername}
-          handleSearch={handleSearch}
-        />
+      <div
+        className={`flex items-center justify-center transition-all duration-500 ease-in-out ${
+          userData ? `h-full` : `h-[65vh]`
+        }`}
+      >
+        <div className="flex items-center justify-center flex-col">
+          <h1 className="text-2xl font-semibold mb-3 text-black dark:text-white md:text-4xl text-center">
+            GitHub User Profile Search
+          </h1>
+
+          <SearchBar
+            username={username}
+            setUsername={setUsername}
+            handleSearch={handleSearch}
+          />
+        </div>
       </div>
 
       <MainContent
