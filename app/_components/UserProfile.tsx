@@ -15,8 +15,8 @@ const UserProfile = ({ userData }: UserProfileProps) => {
             className="w-21 h-21 md:w-32 md:h-32 rounded-full md:mb-0 md:mr-6  ring-2 ring-[#eaeaea] dark:ring-[#333333]"
           />
           <div>
-            <h2 className="text-2xl line-clamp-1 text-[#333333] dark:text-[#d1d5db] font-bold capitalize">
-              {userData.company}
+            <h2 className="text-2xl line-clamp-1 text-[#333333] dark:text-[#d1d5db] font-bold capitalize ">
+              {userData.name}
             </h2>
             <a
               href={userData.html_url}
@@ -26,7 +26,7 @@ const UserProfile = ({ userData }: UserProfileProps) => {
             >
               @{userData.login}
             </a>
-            <p className="mt-2">{userData.bio}</p>
+            <p className="mt-2 line-clamp-2">{userData.bio}</p>
             <p className="mt-1 text-sm text-[#333333] dark:text-[#d1d5db]">
               {userData.location}
             </p>

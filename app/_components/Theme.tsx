@@ -4,18 +4,18 @@ import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 
 const ThemeSwitch = () => {
-  const { theme, setTheme } = useTheme();
+  const { theme, setTheme, resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     setMounted(true);
   }, []);
 
-  if (!mounted) return null;
-
   const toggleTheme = () => {
-    setTheme(theme === "dark" ? "light" : "dark");
+    setTheme(resolvedTheme === "dark" ? "light" : "dark");
   };
+
+  if (!mounted) return null;
 
   return (
     <div className="ml-3 flex flex-col justify-center">
@@ -25,7 +25,7 @@ const ThemeSwitch = () => {
         className="peer sr-only"
         aria-label="Toggle dark mode"
         name="theme-toggle"
-        checked={theme === "dark"}
+        checked={resolvedTheme === "dark"}
         onChange={toggleTheme}
       />
       <label
@@ -33,8 +33,9 @@ const ThemeSwitch = () => {
         htmlFor="theme-toggle"
         aria-hidden="true"
       >
+        {/* Light theme icon */}
         <svg
-          className={theme === "dark" ? "hidden" : "block"}
+          className={resolvedTheme === "dark" ? "hidden" : "block"}
           width="16"
           height="16"
           xmlns="http://www.w3.org/2000/svg"
@@ -49,8 +50,9 @@ const ThemeSwitch = () => {
           ></path>
         </svg>
 
+        {/* Dark theme icon */}
         <svg
-          className={theme === "dark" ? "block" : "hidden"}
+          className={resolvedTheme === "dark" ? "block" : "hidden"}
           width="16"
           height="16"
           xmlns="http://www.w3.org/2000/svg"
@@ -64,6 +66,7 @@ const ThemeSwitch = () => {
             d="M12.5 5a.625.625 0 0 1-.625-.625 1.252 1.252 0 0 0-1.25-1.25.625.625 0 1 1 0-1.25 1.252 1.252 0 0 0 1.25-1.25.625.625 0 1 1 1.25 0c.001.69.56 1.249 1.25 1.25a.625.625 0 1 1 0 1.25c-.69.001-1.249.56-1.25 1.25A.625.625 0 0 1 12.5 5Z"
           ></path>
         </svg>
+        
         <span className="sr-only">Switch to light / dark version</span>
       </label>
     </div>
