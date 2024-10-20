@@ -29,7 +29,6 @@ const Home = () => {
           },
         }
       );
-      console.log(data);
 
       setRepositories(data);
     } catch (err: unknown) {
