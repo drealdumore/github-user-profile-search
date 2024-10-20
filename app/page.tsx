@@ -29,6 +29,8 @@ const Home = () => {
           },
         }
       );
+      console.log(data);
+
       setRepositories(data);
     } catch (err: unknown) {
       if (axios.isAxiosError(err)) {
@@ -60,7 +62,6 @@ const Home = () => {
             },
           }
         );
-        console.log(data);
         setUserData(data);
         await fetchRepositories(user, 1);
         setPage(1);
