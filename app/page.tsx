@@ -52,6 +52,7 @@ const Home = () => {
       setLoading(true);
       setError("");
       setRepositories([]);
+      setUserData(null);
       try {
         const { data } = await axios.get<UserProfile>(
           `https://api.github.com/users/${user}`,
