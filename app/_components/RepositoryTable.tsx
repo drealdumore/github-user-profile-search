@@ -42,11 +42,11 @@ const RepositoryTable: React.FC<RepositoryTableProps> = ({ repositories }) => {
           <div className="flex justify-between items-center text-sm  text-muted-text/80 hover:text-text ">
           <div className="flex gap-4">
 
-            <span className="flex items-center">
+            <span className="flex items-center justify-center">
               <Star className="w-4 h-4 mr-1" />
               {repo.stargazers_count}
             </span>
-            <span className="flex items-center">
+            <span className="flex items-center justify-center">
               <GitFork className="w-4 h-4 mr-1  text-muted-text/80 hover:text-text " />
               {repo.forks_count}
             </span>
