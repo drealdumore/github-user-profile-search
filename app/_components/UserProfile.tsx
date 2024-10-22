@@ -6,7 +6,7 @@ const UserProfile = ({ userData }: UserProfileProps) => {
   return (
     <div className="flex items-center justify-center w-full">
       <div className="mb-8 rounded-lg border bg-background/50 w-full md:w-[30rem] border-[#eaeaea] dark:border-[#333333] shadow-sm p-6">
-        <div className="flex gap-4 items-center">
+        <div className="flex gap-4 flex-col sm:flex-row items-center">
           <img
             src={userData.avatar_url}
             alt={userData.login}
@@ -14,7 +14,7 @@ const UserProfile = ({ userData }: UserProfileProps) => {
             height={128}
             className="w-21 h-21 md:w-32 md:h-32 rounded-full md:mb-0 md:mr-6  ring-2 ring-[#eaeaea] dark:ring-[#333333]"
           />
-          <div>
+          <div className="self-start">
             <h2 className="text-2xl line-clamp-1 text-[#333333] dark:text-[#d1d5db] font-bold capitalize ">
               {userData.name}
             </h2>
